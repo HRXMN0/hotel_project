@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Available Hotels</h2>
+<div class="hotel-list">
+    {% for hotel in hotels %}
+    <div class="hotel-card">
+        <img src="{{ url_for('static', filename='images/' + hotel.image) if hotel.image else url_for('static', filename='images/default.jpg') }}" alt="{{ hotel.name }}">
+
+        <h3>{{ hotel.name }}</h3>
+        <p>{{ hotel.location }}</p>
+        <p>Price: ${{ hotel.price }} / night</p>
+        <p>Rating: ⭐{{ hotel.rating }}</p>
+        <a href="/hotel/{{ hotel.id }}">View Details</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Book {{ hotel.name }}</h2>
+{% if success %}
+<p>Thank you, {{ name }}! Your booking is confirmed.</p>
+{% else %}
+<form method="post">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="tel" name="phone" placeholder="Your Phone Number" required>
+    <button type="submit">Confirm Booking</button>
+</form>
+{% endif %}
+{% endblock %}
